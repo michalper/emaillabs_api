@@ -1,0 +1,33 @@
+{
+  "name": "emaillabs/emaillabs",
+  "description": "Send emails by EmailLabs",
+  "version": "1.0",
+  "homepage": "http://docs.emaillabs.pl/",
+  "authors": [
+    {
+      "name": "Michał Per",
+      "email": "michal.per@encja.com",
+      "homepage": "https://github.com/michalper",
+      "role": "PHP Developer"
+    }
+  ],
+  "keywords": [
+    "EmailLabs",
+    "emaillabs",
+    "email"
+  ],
+  "require": {
+    "php": ">=5.3"
+  },
+  "require-dev": {
+  },
+  "type": "library",
+  "autoload": {
+    "psr-0": {
+      "EmailLabs": "lib/"
+    },
+    "psr-4": {
+      "EmailLabs\\": "EmailLabs/"
+    }
+  }
+}
