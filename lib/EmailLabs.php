@@ -1,8 +1,5 @@
 <?php
 
-include_once 'EmailLabs/Email.php';
-include_once 'EmailLabs/Response.php';
-
 use EmailLabs\Response;
 use EmailLabs\Email;
 
