@@ -1,7 +1,7 @@
 {
   "name": "michalper/emaillabs",
   "description": "Unofficial PHP library for EmailLabs API",
-  "version": "1.0-stable",
+  "version": "1.0.0",
   "homepage": "http://docs.emaillabs.pl/",
   "license": "MIT",
   "authors": [
@@ -12,6 +12,9 @@
       "role": "PHP Developer"
     }
   ],
+  "support": {
+    "email": "michal.per@encja.com"
+  },
   "keywords": [
     "EmailLabs",
     "emaillabs",
