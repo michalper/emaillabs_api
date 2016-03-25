@@ -4,6 +4,29 @@ namespace EmailLabs;
 
 class Email
 {
+    const VAR_BCC = 'bbc';
+    const VAR_BCC_NAME = 'bbc_name';
+    const VAR_CC = 'cc';
+    const VAR_CC_NAME = 'cc_name';
+    const VAR_FILES = 'files';
+    const VAR_FILES_CONTENT = 'content';
+    const VAR_FILES_INLINE = 'inline';
+    const VAR_FILES_MIME = 'mime';
+    const VAR_FILES_NAME = 'name';
+    const VAR_FROM = 'from';
+    const VAR_FROM_NAME = 'from_name';
+    const VAR_HEADERS = 'headers';
+    const VAR_HTML = 'html';
+    const VAR_MESSAGE_ID = 'message_id';
+    const VAR_REPLY_TO = 'reply_to';
+    const VAR_SMTP_ACCOUNT = 'smtp_account';
+    const VAR_SUBJECT = 'subject';
+    const VAR_TAGS = 'tags';
+    const VAR_TEMPLATE_ID = 'template_id';
+    const VAR_TEXT = 'text';
+    const VAR_TO = 'to';
+    const VAR_VARS = 'vars';
+
     /**
      * Adres e-mail odbiorcy wiadomości e-mail ( w formie tablicy )
      * @required
@@ -126,7 +149,7 @@ class Email
     }
 
     /**
-     * @param array $to
+     * @param string $to
      * @return Email
      */
     public function setTo($to)
@@ -287,10 +310,10 @@ class Email
     public function setToExtended($email, $vars = [], $messageId = false)
     {
         if (!empty($vars))
-            $this->to[$email]['vars'] = $vars;
+            $this->to[$email][self::VAR_VARS] = $vars;
 
         if ($messageId)
-            $this->to[$email]['message_id'] = $messageId;
+            $this->to[$email][self::VAR_MESSAGE_ID] = $messageId;
 
         return $this;
     }
@@ -305,18 +328,18 @@ class Email
     public function setFileExtended($name, $mime, $content, $inline)
     {
         $file = [];
-        $file['name'] = $name;
+        $file[self::VAR_FILES_NAME] = $name;
 
         if ($mime) {
-            $file['mime'] = $mime;
+            $file[self::VAR_FILES_MIME] = $mime;
         }
 
         if ($content) {
-            $file['content'] = $content;
+            $file[self::VAR_FILES_CONTENT] = $content;
         }
 
         if ($inline) {
-            $file['inline'] = $inline;
+            $file[self::VAR_FILES_INLINE] = $inline;
         }
 
         $this->files[] = $file;
@@ -327,15 +350,40 @@ class Email
     public function getMessage()
     {
         $message = array(
-            'to' => $this->to,
-            'from' => $this->from,
-            'from_name' => $this->from_name,
-            'template_id' => $this->template_id,
-            'html' => $this->html,
-            'text' => $this->text,
-            'smtp_account' => $this->smtp_account,
-            'subject' => $this->subject
+            self::VAR_TO => $this->to,
+            self::VAR_FROM => $this->from,
+            self::VAR_FROM_NAME => $this->from_name,
+            self::VAR_TEMPLATE_ID => $this->template_id,
+            self::VAR_HTML => $this->html,
+            self::VAR_TEXT => $this->text,
+            self::VAR_SMTP_ACCOUNT => $this->smtp_account,
+            self::VAR_SUBJECT => $this->subject
         );
+
+        if ($this->headers) {
+            $message[self::VAR_HEADERS] = $this->headers;
+        }
+        if ($this->cc) {
+            $message[self::VAR_CC] = $this->cc;
+        }
+        if ($this->cc_name) {
+            $message[self::VAR_CC_NAME] = $this->cc_name;
+        }
+        if ($this->bcc) {
+            $message[self::VAR_BCC] = $this->bcc;
+        }
+        if ($this->bcc_name) {
+            $message[self::VAR_BCC_NAME] = $this->bcc_name;
+        }
+        if ($this->reply_to) {
+            $message[self::VAR_REPLY_TO] = $this->reply_to;
+        }
+        if ($this->tags) {
+            $message[self::VAR_TAGS] = $this->tags;
+        }
+        if ($this->files) {
+            $message[self::VAR_FILES] = $this->files;
+        }
 
         return $message;
     }
