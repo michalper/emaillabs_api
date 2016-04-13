@@ -386,8 +386,8 @@ class EmailLabs
      * Pozwala pobrać dane zagregowane np. na potrzeby stworzenia wykresu
      * Różnica pomiędzy date_from a date_to nie może wynosić więcej niż 62 dni
      * @param string $smtp_account
-     * @param string $date_from timestamp
-     * @param bool|string $date_to timestamp
+     * @param int $date_from timestamp
+     * @param int $date_to timestamp
      * @return bool|Response
      */
     public function getAgregate($smtp_account, $date_from, $date_to)
@@ -411,8 +411,8 @@ class EmailLabs
      * Pozwala pobrać dane zagregowane np. na potrzeby stworzenia wykresu z podziałem na tagi
      * Różnica pomiędzy date_from a date_to nie może wynosić więcej niż 62 dni
      * @param string $smtp_account
-     * @param string $date_from timestamp
-     * @param bool|string $date_to timestamp
+     * @param int $date_from timestamp
+     * @param int $date_to timestamp
      * @return bool|Response
      */
     public function getAgregateTags($smtp_account, $date_from, $date_to)
