@@ -154,7 +154,7 @@ class Email
      */
     public function setTo($to)
     {
-        $this->to[$to] = [];
+        $this->to[] = $to;
         return $this;
     }
 
@@ -309,6 +309,8 @@ class Email
      */
     public function setToExtended($email, $vars = [], $messageId = false)
     {
+        $this->to[] = $email;
+
         if (!empty($vars))
             $this->to[$email][self::VAR_VARS] = $vars;
 

@@ -116,6 +116,9 @@ class EmailLabs
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
     }
 
+    /**
+     * @throws Exception
+     */
     private function _type()
     {
         if (!$this->request_type) {
@@ -144,6 +147,10 @@ class EmailLabs
         }
     }
 
+    /**
+     * @return mixed
+     * @throws Exception
+     */
     private function _exec()
     {
         if (!$this->appKey || !$this->secret) {
@@ -192,10 +199,10 @@ class EmailLabs
 
     /**
      * Umożliwia pobranie wiadomości e-mail wysłanych z pośrednictwem kont SMTP
-     * @param int $offset
-     * @param int $limit
-     * @param bool $sort
-     * @param bool $filter
+     * @param integer $offset
+     * @param integer $limit
+     * @param integer|bool $sort
+     * @param integer|bool $filter
      * @return Response
      */
     public function getEmails($offset = 0, $limit = 100, $sort = false, $filter = false)
@@ -228,10 +235,10 @@ class EmailLabs
 
     /**
      * Umożliwia pobranie otwarć wiadomości przez użytkowników.
-     * @param int $offset
-     * @param int $limit
-     * @param bool $sort
-     * @param bool $filter
+     * @param integer $offset
+     * @param integer $limit
+     * @param integer|bool $sort
+     * @param integer|bool $filter
      * @return Response
      */
     public function getOpens($offset = 0, $limit = 100, $sort = false, $filter = false)
@@ -253,10 +260,10 @@ class EmailLabs
 
     /**
      * Umożliwia pobranie ilości kliknięć w linki użytych we wiadomościach e-mail.
-     * @param int $offset
-     * @param int $limit
-     * @param bool $sort
-     * @param bool $filter
+     * @param integer $offset
+     * @param integer $limit
+     * @param integer|bool $sort
+     * @param integer|bool $filter
      * @return Response
      */
     public function getClicks($offset = 0, $limit = 100, $sort = false, $filter = false)
@@ -290,7 +297,7 @@ class EmailLabs
 
     /**
      * Pozwala sprawdzić czy na czarniej liście znajduję się zadany adres e-mail.
-     * @param $email
+     * @param string $email
      * @return bool|Response
      */
     public function getBlacklistEmail($email)
@@ -307,13 +314,13 @@ class EmailLabs
 
     /**
      * Pozwala pobrać czarną listę adresów e-mail, do których nie będzie dostarczana poczta.
-     * @param bool $offset
-     * @param bool $limit
-     * @param bool $sort
-     * @param bool $filter
+     * @param integer|bool $offset
+     * @param integer|bool $limit
+     * @param integer|bool $sort
+     * @param integer|bool $filter
      * @return Response
      */
-    public function getBlacklists($offset = false, $limit = false, $sort = false, $filter = false)
+    public function getBlacklists($offset = 0, $limit = 100, $sort = false, $filter = false)
     {
         $params = [];
         $params['offset'] = $offset;
@@ -332,9 +339,9 @@ class EmailLabs
 
     /**
      * Pozwala dodać adres e-mail do czarnej listy
-     * @param $account
-     * @param $email
-     * @param $reason
+     * @param string $account
+     * @param string $email
+     * @param string $reason
      * @return bool|Response
      */
     public function addBlackList($account, $email, $reason)
@@ -386,8 +393,8 @@ class EmailLabs
      * Pozwala pobrać dane zagregowane np. na potrzeby stworzenia wykresu
      * Różnica pomiędzy date_from a date_to nie może wynosić więcej niż 62 dni
      * @param string $smtp_account
-     * @param int $date_from timestamp
-     * @param int $date_to timestamp
+     * @param integer $date_from timestamp
+     * @param integer $date_to timestamp
      * @return bool|Response
      */
     public function getAgregate($smtp_account, $date_from, $date_to)
@@ -411,8 +418,8 @@ class EmailLabs
      * Pozwala pobrać dane zagregowane np. na potrzeby stworzenia wykresu z podziałem na tagi
      * Różnica pomiędzy date_from a date_to nie może wynosić więcej niż 62 dni
      * @param string $smtp_account
-     * @param int $date_from timestamp
-     * @param int $date_to timestamp
+     * @param integer $date_from timestamp
+     * @param integer $date_to timestamp
      * @return bool|Response
      */
     public function getAgregateTags($smtp_account, $date_from, $date_to)
@@ -434,7 +441,7 @@ class EmailLabs
 
     /**
      * Pozwala usunąć adres e-mail z czarnej listy
-     * @param $email
+     * @param string $email
      * @return bool|Response
      */
     public function deleteEmailBlacklist($email)
@@ -450,7 +457,7 @@ class EmailLabs
 
     /**
      * Pozwala sprawdzić czy adres e-mail należy do serwisów tymczasowych
-     * @param $email
+     * @param string $email
      * @return bool|Response
      */
     public function isEmailTemporary($email)
