@@ -174,7 +174,7 @@ class EmailLabs
 
     /**
      * Dodawanie szablonu wiadomości
-     * http://docs.emaillabs.pl/api/dodawanie-szablonu-wiadomosci/
+     * @see http://docs.emaillabs.pl/api/dodawanie-szablonu-wiadomosci/
      * @param string $html
      * @param bool|string $text
      * @return Response
@@ -199,6 +199,7 @@ class EmailLabs
 
     /**
      * Umożliwia pobranie wiadomości e-mail wysłanych z pośrednictwem kont SMTP
+     * @see http://docs.emaillabs.pl/api/logi-i-zdarzenia/pobieranie-wiadomosci-wyslanych-przez-smtp/
      * @param integer $offset
      * @param integer $limit
      * @param integer|bool $sort
@@ -224,6 +225,7 @@ class EmailLabs
 
     /**
      * Pozwala pobrać listę kont SMTP przypisanych do danego panelu.
+     * @see http://docs.emaillabs.pl/api/logi-i-zdarzenia/konta-smtp/
      */
     public function getSmtp()
     {
@@ -235,6 +237,7 @@ class EmailLabs
 
     /**
      * Umożliwia pobranie otwarć wiadomości przez użytkowników.
+     * @see http://docs.emaillabs.pl/api/logi-i-zdarzenia/pobieranie-otwarc-wiadomosci/
      * @param integer $offset
      * @param integer $limit
      * @param integer|bool $sort
@@ -260,6 +263,7 @@ class EmailLabs
 
     /**
      * Umożliwia pobranie ilości kliknięć w linki użytych we wiadomościach e-mail.
+     * @see http://docs.emaillabs.pl/api/logi-i-zdarzenia/pobieranie-klikniec/
      * @param integer $offset
      * @param integer $limit
      * @param integer|bool $sort
@@ -285,6 +289,7 @@ class EmailLabs
 
     /**
      * Pozwala pobrać listę powodów odrzuceń na czarnej liście.
+     * @see http://docs.emaillabs.pl/api/czarna-lista/pobieranie-listy-powodow-odrzucen-na-czarnej-liscie/
      * @return Response
      */
     public function getBlacklistReasons()
@@ -297,6 +302,7 @@ class EmailLabs
 
     /**
      * Pozwala sprawdzić czy na czarniej liście znajduję się zadany adres e-mail.
+     * @see http://docs.emaillabs.pl/api/czarna-lista/pobieranie-adresu-e-mail-z-czarnej-listy/
      * @param string $email
      * @return bool|Response
      */
@@ -314,6 +320,7 @@ class EmailLabs
 
     /**
      * Pozwala pobrać czarną listę adresów e-mail, do których nie będzie dostarczana poczta.
+     * @see http://docs.emaillabs.pl/api/czarna-lista/zarzadzanie-czarna-lista/
      * @param integer|bool $offset
      * @param integer|bool $limit
      * @param integer|bool $sort
@@ -339,6 +346,7 @@ class EmailLabs
 
     /**
      * Pozwala dodać adres e-mail do czarnej listy
+     * @see http://docs.emaillabs.pl/api/czarna-lista/dodawanie-adresu-e-mail-do-czarnej-listy/
      * @param string $account
      * @param string $email
      * @param string $reason
@@ -363,6 +371,7 @@ class EmailLabs
 
     /**
      * Pozwala wysyłać wiadomości e-mail za pośrednictwem API
+     * @see http://docs.emaillabs.pl/api/wysylka-wiadomosci-e-mail/
      * @param Email $email
      * @return Response
      */
@@ -377,6 +386,7 @@ class EmailLabs
 
     /**
      * Pozwala wysyłać wiadomości e-mail za pośrednictwem API z wykorzystaniem szablonów
+     * @see http://docs.emaillabs.pl/api/wysylka-wiadomosci-e-mail-z-szablonem/
      * @param Email $email
      * @return Response
      */
@@ -392,6 +402,7 @@ class EmailLabs
     /**
      * Pozwala pobrać dane zagregowane np. na potrzeby stworzenia wykresu
      * Różnica pomiędzy date_from a date_to nie może wynosić więcej niż 62 dni
+     * @see http://docs.emaillabs.pl/api/logi-i-zdarzenia/dane-zagregowane/
      * @param string $smtp_account
      * @param integer $date_from timestamp
      * @param integer $date_to timestamp
@@ -417,6 +428,7 @@ class EmailLabs
     /**
      * Pozwala pobrać dane zagregowane np. na potrzeby stworzenia wykresu z podziałem na tagi
      * Różnica pomiędzy date_from a date_to nie może wynosić więcej niż 62 dni
+     * @see http://docs.emaillabs.pl/api/logi-i-zdarzenia/dane-zagregowane-z-podzialem-na-tagi/
      * @param string $smtp_account
      * @param integer $date_from timestamp
      * @param integer $date_to timestamp
@@ -441,6 +453,7 @@ class EmailLabs
 
     /**
      * Pozwala usunąć adres e-mail z czarnej listy
+     * @see http://docs.emaillabs.pl/api/czarna-lista/usuwanie-adresu-z-czarnej-listy/
      * @param string $email
      * @return bool|Response
      */
@@ -457,6 +470,7 @@ class EmailLabs
 
     /**
      * Pozwala sprawdzić czy adres e-mail należy do serwisów tymczasowych
+     * @see http://docs.emaillabs.pl/api/czarna-lista/sprawdzanie-czy-adres-e-mail-jest-tymczasowy/
      * @param string $email
      * @return bool|Response
      */

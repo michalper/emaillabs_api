@@ -4,6 +4,9 @@ namespace EmailLabs;
 
 class Email
 {
+    /**
+     * VARS
+     */
     const VAR_BCC = 'bbc';
     const VAR_BCC_NAME = 'bbc_name';
     const VAR_CC = 'cc';
@@ -18,6 +21,7 @@ class Email
     const VAR_HEADERS = 'headers';
     const VAR_HTML = 'html';
     const VAR_MESSAGE_ID = 'message_id';
+    const VAR_RECEIVER_NAME = 'receiver_name';
     const VAR_REPLY_TO = 'reply_to';
     const VAR_SMTP_ACCOUNT = 'smtp_account';
     const VAR_SUBJECT = 'subject';
@@ -133,11 +137,6 @@ class Email
      */
     private $files = [];
 
-    public function __construct()
-    {
-
-    }
-
     /**
      * @param array $files
      * @return Email
@@ -150,11 +149,12 @@ class Email
 
     /**
      * @param string $to
+     * @param bool|string $name
      * @return Email
      */
-    public function setTo($to)
+    public function setTo($to, $name = false)
     {
-        $this->to[] = $to;
+        $this->to[$name] = $to;
         return $this;
     }
 
@@ -300,16 +300,18 @@ class Email
 
     /**
      * Dodanie dodatkowych parametrów odbiorcy
-     * vars = Tablica ze zmiennymi do podmiany w szablonie
-     * message_id = Własne message-id
      * @param $email
-     * @param array $vars
-     * @param bool $messageId
+     * @param bool|string $name Nazwa odbiorcy
+     * @param array $vars Tablica ze zmiennymi do podmiany w szablonie
+     * @param bool $messageId Własne message-id
      * @return $this
      */
-    public function setToExtended($email, $vars = [], $messageId = false)
+    public function setToExtended($email, $name = false, $vars = [], $messageId = false)
     {
         $this->to[] = $email;
+
+        if ($name)
+            $this->to[$email][self::VAR_RECEIVER_NAME] = $name;
 
         if (!empty($vars))
             $this->to[$email][self::VAR_VARS] = $vars;
