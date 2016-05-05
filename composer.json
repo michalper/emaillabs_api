@@ -1,7 +1,7 @@
 {
   "name": "michalper/emaillabs",
   "description": "Unofficial PHP library for EmailLabs API",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "homepage": "http://docs.emaillabs.pl/",
   "license": "MIT",
   "authors": [

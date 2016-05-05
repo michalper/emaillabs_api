@@ -22,7 +22,7 @@ class EmailLabs
     const URL_CLICKS = 'clicks';
     const URL_EMAILS = 'emails';
     const URL_OPENS = 'opens';
-    const URL_SEND_MAIL = 'sendmail';
+    const URL_SEND_MAIL = 'new_sendmail';
     const URL_SEND_MAIL_TEMPLATE = 'sendmail_templates';
     const URL_SMTP = 'smtp';
     const URL_TEMPORARY_EMAIL = 'is_mail_tmp/email/';

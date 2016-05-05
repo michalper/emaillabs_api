@@ -149,12 +149,12 @@ class Email
 
     /**
      * @param string $to
-     * @param bool|string $name
+     * @param string $name
      * @return Email
      */
-    public function setTo($to, $name = false)
+    public function setTo($to, $name)
     {
-        $this->to[$name] = $to;
+        $this->to[$to][self::VAR_RECEIVER_NAME] = $name;
         return $this;
     }
 
@@ -301,17 +301,14 @@ class Email
     /**
      * Dodanie dodatkowych parametrów odbiorcy
      * @param $email
-     * @param bool|string $name Nazwa odbiorcy
+     * @param string $name Nazwa odbiorcy
      * @param array $vars Tablica ze zmiennymi do podmiany w szablonie
      * @param bool $messageId Własne message-id
      * @return $this
      */
-    public function setToExtended($email, $name = false, $vars = [], $messageId = false)
+    public function setToExtended($email, $name, $vars = [], $messageId = false)
     {
-        $this->to[] = $email;
-
-        if ($name)
-            $this->to[$email][self::VAR_RECEIVER_NAME] = $name;
+        $this->to[$email][self::VAR_RECEIVER_NAME] = $name;
 
         if (!empty($vars))
             $this->to[$email][self::VAR_VARS] = $vars;
