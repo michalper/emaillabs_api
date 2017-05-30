@@ -114,6 +114,7 @@ class EmailLabs
         $this->curl = curl_init();
         curl_setopt($this->curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT ,500);
     }
 
     /**
