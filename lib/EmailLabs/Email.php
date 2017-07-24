@@ -143,7 +143,17 @@ class Email
      */
     public function setFiles($files)
     {
-        $this->files[] = $files;
+        $this->files = $files;
+        return $this;
+    }
+
+    /**
+     * @param $file
+     * @return Email
+     */
+    public function addFile($file)
+    {
+        $this->files[] = $file;
         return $this;
     }
 
