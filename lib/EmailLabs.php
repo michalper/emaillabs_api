@@ -114,7 +114,7 @@ class EmailLabs
         $this->curl = curl_init();
         curl_setopt($this->curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT ,120);
+        curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 120);
     }
 
     /**
@@ -160,6 +160,11 @@ class EmailLabs
         curl_setopt($this->curl, CURLOPT_USERPWD, "$this->appKey:$this->secret");
         curl_setopt($this->curl, CURLOPT_URL, $this->url . $this->params);
         $response = curl_exec($this->curl);
+
+        if ($error = curl_error($this->curl)) {
+            throw new \Exception($error, curl_errno($this->curl));
+        }
+
         return $response;
     }
 
